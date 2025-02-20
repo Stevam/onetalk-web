@@ -1,0 +1,147 @@
+.friends-list-pending-layout {
+    background-color: var(--box-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: background-color 0.4s ease;
+}
+
+.friends-list-pending-layout h2 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.friends-list-pending-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.friends-list-pending-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-bg);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.friends-list-pending-item:hover {
+    transform: scale(1.02);
+}
+
+.friends-list-pending-icon {
+    font-size: 28px;
+    color: var(--icon-color);
+    margin-right: 10px;
+}
+
+.friends-list-pending-email {
+    font-size: 16px;
+    color: var(--text-color);
+    flex-grow: 1;
+    text-align: left;
+}
+
+.friends-list-pending-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.friends-list-pending-accept-button {
+    background-color: #27ae60;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.friends-list-pending-accept-button:hover {
+    background-color: #219150;
+}
+
+.friends-list-pending-decline-button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.friends-list-pending-decline-button:hover {
+    background-color: #c0392b;
+}
+
+.friends-list-pending-accept-button svg,
+.friends-list-pending-decline-button svg {
+    margin-left: 5px;
+}
+
+.no-friends-list-pending {
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 15px;
+}
+
+@media (max-width: 768px) {
+    .friends-list-pending-layout {
+        width: 90%;
+        max-width: none;
+        padding: 15px;
+    }
+
+    .friends-list-pending-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .friends-list-pending-email {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .friends-list-pending-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .friends-list-pending-accept-button,
+    .friends-list-pending-decline-button {
+        width: 48%;
+        justify-content: center;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .friends-list-pending-layout {
+        padding: 10px;
+    }
+
+    .friends-list-pending-email {
+        font-size: 13px;
+    }
+
+    .friends-list-pending-accept-button,
+    .friends-list-pending-decline-button {
+        width: 100%;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,165 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+
+    /* Light theme colors. */
+    --background-light: #f0f4f8;
+    --box-bg-light: #ffffff;
+    --text-light: rgba(58, 58, 77, 0.445);
+    --text-box-light: rgba(209, 209, 209, 0.5);
+    --text-hover-light: #3a3a4d; 
+    --border-light: #aaa9a9cb;
+    --placeholder-light: rgba(110, 101, 101, 0.377);
+    --border-focus-light: #4946462c;
+    --btn-text-light: #ffffff;
+    --btn-background-light: #4A90E2; /* Azul suave */
+    --btn-hover-light: #357ABD; /* Azul um pouco mais escuro no hover */
+    --input-focus-light: #3b82f6;
+    --input-background-light: #f0f4f84f;
+    --input-hover-light: #f0f4f8c7;
+    --error-color-light: #ff4747;
+    --bubble-sent-light: #4a90e2b5; /* Azul para a mensagem enviada */
+    --bubble-received-light: #b1b1b1cf; /* Cinza claro para a mensagem recebida */
+  
+
+
+    /* Dark theme colors (shades of black and gray). */
+    --background-dark: #121212;
+    --box-bg-dark: #1e1e1e;
+    --text-dark: #e0e0e0;
+    --text-box-dark: rgba(143, 143, 143, 0.5);
+    --text-hover-dark: #ffffff;
+    --border-dark: #333333;
+    --placeholder-dark: rgba(200, 200, 200, 0.5);
+    --border-focus-dark: rgba(255, 255, 255, 0.2);
+    --btn-background-dark: #6ae17c4a; /* Verde claro */
+    --btn-hover-dark: #3ed5437a; /* Verde mais escuro no hover */
+    --btn-text-dark: #ffffff;
+    --input-focus-dark: #4a4a4a;
+    --input-background-dark: #222222;
+    --input-hover-dark: #2e2e2e;
+    --error-color-dark: #ff4747;
+    --bubble-sent-dark: #6fbf73a3; /* Verde suave para a mensagem enviada */
+    --bubble-received-dark: #2C2C2C; /* Cinza escuro para a mensagem recebida */
+
+
+    /* Cores do tema claro */
+    /* --background-light: #f0f4f8;
+    --box-bg-light: #ffffff;
+    --text-light: #3a3a4db7; 
+    --text-hover-light: #3a3a4d; 
+    --border-light: #aaa9a9cb;
+    --placeholder-light: rgba(110, 101, 101, 0.377);
+    --border-focus-light: #4946462c;
+    --btn-background-light: #3b82f6;
+    --btn-hover-light: #cfdcf8;
+    --input-focus-light: #3b82f6;
+    --input-background-light: #f0f4f84f;
+    --input-hover-light: #3b83f686;
+    --error-color-light: #ff4747; */
+    
+    /* Dark theme colors (shades of navy blue and blue). */
+    /* --background-dark: #25252b;
+    --box-bg-dark: #2a2a3b;
+    --text-dark: #d1d1e0;
+    --text-hover-dark: #ffffff;
+    --border-dark: #555;
+    --placeholder-dark: rgba(187, 187, 187, 0.5);
+    --border-focus-dark: rgba(255, 255, 255, 0.4);
+    --btn-background-dark: #3b6cb7;
+    --btn-hover-dark: #2d5aa3;
+    --input-focus-dark: #3b82f6;
+    --input-background-dark: #a5a5d12d;
+    --input-hover-dark: #0a101a86;
+    --error-color-dark: #ff4747; */
+
+
+    /* Set default based on system. */
+    --background: var(--background-light);
+    --box-bg: var(--box-bg-light);
+    --text-color: var(--text-light);
+    --text-box-color: var(--text-box-light);
+    --text-hover-color: var(--text-hover-light);
+    --border-color: var(--border-light);
+    --placeholder-color: var(--placeholder-light);
+    --border-focus-color: var(--border-focus-light);
+    --btn-background: var(--btn-background-light);
+    --btn-text: var(--btn-text-light);
+    --btn-hover: var(--btn-hover-light);
+    --input-focus: var(--input-focus-light);
+    --input-background: var(--input-background-light);
+    --input-hover: var(--input-hover-light);
+    --error-color: var(--error-color-light);
+    --bubble-sent: var(--bubble-sent-light);
+    --bubble-received: var(--bubble-received-light);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* If the user is in dark mode. */
+[data-theme="dark"] {
+    --background: var(--background-dark);
+    --box-bg: var(--box-bg-dark);
+    --text-color: var(--text-dark);
+    --text-box-color: var(--text-box-dark);
+    --text-hover-color: var(--text-hover-dark);
+    --border-color: var(--border-dark);
+    --placeholder-color: var(--placeholder-dark);
+    --border-focus-color: var(--border-focus-dark);
+    --btn-background: var(--btn-background-dark);
+    --btn-text: var(--btn-text-dark);
+    --btn-hover: var(--btn-hover-dark);
+    --input-focus: var(--input-focus-dark);
+    --input-background: var(--input-background-dark);
+    --input-hover: var(--input-hover-dark);
+    --error-color: var(--error-color-dark);
+    --bubble-sent: var(--bubble-sent-dark);
+    --bubble-received: var(--bubble-received-dark);
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+.box {
+    background-color: var(--box-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: var(--btn-background);
+    color: var(--btn-text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+button:hover {
+    background-color: var(--btn-hover);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.error-message::before {
+    content: '⚠️';
+    margin-right: 8px;
+}

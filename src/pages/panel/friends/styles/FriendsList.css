@@ -1,0 +1,134 @@
+.friends-list-layout {
+    background-color: var(--box-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    transition: background-color 0.4s ease;
+}
+
+.friends-list-layout h2 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.friends-list-layout ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.friend-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-bg);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.friend-list-item:hover {
+    transform: scale(1.02);
+}
+
+.friend-list-info {
+    display: flex;
+    align-items: center;
+}
+
+.friend-list-icon {
+    font-size: 28px;
+    color: var(--icon-color);
+    margin-right: 10px;
+}
+
+.friend-list-email {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.friend-list-remove-button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.friend-list-remove-button:hover {
+    background-color: #c0392b;
+}
+
+.friend-list-remove-button svg {
+    margin-left: 5px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.no-friend-list {
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 15px;
+}
+
+@media (max-width: 768px) {
+    .friends-list-layout {
+        width: 90%;
+        max-width: none;
+        padding: 15px;
+    }
+
+    .friend-list-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .friend-list-info {
+        flex-direction: column;
+    }
+
+    .friend-list-icon {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .friend-list-email {
+        font-size: 14px;
+    }
+
+    .friend-list-remove-button {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .friends-list-layout {
+        padding: 10px;
+    }
+
+    .friend-list-email {
+        font-size: 13px;
+    }
+
+    .friend-list-remove-button {
+        font-size: 14px;
+    }
+}

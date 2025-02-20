@@ -1,0 +1,117 @@
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background);
+    transition: background-color 0.4s ease;
+}
+
+.signin-box {
+    background-color: var(--box-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    transition: background-color 0.4s ease;
+}
+
+.signin-box h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-size: 24px;
+    transition: 0.3s ease;
+}
+
+.signin-box label {
+    color: var(--text-color);
+    display: flex;
+    justify-content: start;
+    transition: 0.3s ease;
+}
+
+.signin-box input {
+    width: 92%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-background);
+    color: var(--text-color);
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+.signin-box input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.signin-box input:focus {
+    border: 1px solid var(--input-focus);
+    box-shadow: 0 0 5px var(--input-focus);
+}
+
+.signin-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signin-box button:hover {
+    background-color: #3a7bd5;
+}
+
+.signin-links {
+    margin-top: 15px;
+}
+
+.signin-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.signin-links a:hover {
+    color: #4a90e2;
+}
+
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    width: 30px !important;
+    background-color: transparent !important;
+    position: absolute;
+    right: 10px;
+    margin-top: 0px !important;
+    outline: none;
+}
+
+@media (max-width: 480px) {
+    .signin-box {
+        padding: 20px;
+        max-width: 90%;
+    }
+}

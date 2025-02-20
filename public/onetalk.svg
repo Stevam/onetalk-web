@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#41D1FF; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BD34FE; stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEA83; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA800; stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Balão de conversa -->
+  <path fill="url(#grad1)" d="M40 60c0-11 9-20 20-20h136c11 0 20 9 20 20v100c0 11-9 20-20 20H96l-36 30v-30H60c-11 0-20-9-20-20V60z"/>
+  <!-- Ícone de câmera (deslocado 10px para cima e 10px para a esquerda) -->
+  <g transform="translate(-10,-10)">
+    <path fill="url(#grad2)" d="M90 90c0-5.5 4.5-10 10-10h60c5.5 0 10 4.5 10 10v10l30-10v60l-30-10v10c0 5.5-4.5 10-10 10h-60c-5.5 0-10-4.5-10-10V90z"/>
+    <circle cx="110" cy="118" r="5" fill="#4A90E2"/>
+    <circle cx="128" cy="118" r="5" fill="#4A90E2"/>
+    <circle cx="146" cy="118" r="5" fill="#4A90E2"/>
+  </g>
+</svg>
