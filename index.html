@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <!-- <script>
+      (function () {
+        function setFavicon() {
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          console.log(isDarkMode);
+          const favicon = document.getElementById('favicon');
+          favicon.href = isDarkMode ? '/icon-dark.svg' : '/icon-light.svg';
+          console.log(favicon.href);
+        }
+
+        setFavicon();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFavicon);
+      })();
+    </script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OneTalk</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </body>
+</html>

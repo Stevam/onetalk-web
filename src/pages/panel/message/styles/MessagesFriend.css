@@ -1,0 +1,118 @@
+.messages-view {
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+    min-height: calc(70% - 50px);
+    flex-grow: 1;
+    background-color: var(--box-bg);
+    padding: 20px 20px 0px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    scrollbar-width: none;
+    transition: background-color 0.4s ease;
+}
+
+.-webkit-scrollbar {
+    display: none;
+}
+
+.messages-view h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.messages-view h2 {
+    position: sticky;
+    background: var(--box-bg);
+    border-bottom: 1px solid #ccc;
+    gap: 10px;
+    transition: background-color 0.4s ease;
+}
+
+.message-history {
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.sent {
+    justify-content: flex-end;
+    text-align: end;
+    margin-left: auto;
+    width: fit-content;
+    max-width: 60%;
+}
+
+.bubble {
+    /* max-width: 60%; */
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Mensagem enviada (usuário) */
+.sent .bubble {
+    background-color: var(--bubble-sent);    
+    color: white;
+    border-bottom-right-radius: 2px;
+    transition: background-color 0.4s ease;
+}
+
+/* Mensagem recebida (outro usuário) */
+.received .bubble {
+    background-color: var(--bubble-received);
+    color: white;
+    border-bottom-left-radius: 2px;
+    transition: background-color 0.4s ease;
+}
+
+.received {
+    justify-content: flex-start;
+    text-align: start;
+    width: fit-content;
+    max-width: 60%;
+}
+
+textarea {
+    width: 98%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-bottom: 10px;
+    background-color: var(--text-box);
+    color: var(--text-color);
+}
+
+.message-input-container {
+    position: sticky;
+    bottom: 0;
+    background: var(--box-bg);
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    gap: 10px;
+    transition: background-color 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    .messages-view {
+        width: 96%;
+        margin-top: 20px;
+    }
+
+    h2 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .messages-view {
+        width: 86%;
+        margin-top: 20px;
+    }
+
+    h2 {
+        display: none;
+    }
+}

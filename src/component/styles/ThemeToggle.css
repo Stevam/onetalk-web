@@ -1,0 +1,75 @@
+.theme-toggle {
+  position: fixed;
+  top: 2.4%;
+  right: 15%;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 0px;
+    right: 9%;
+  }
+}
+
+.theme-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.theme-toggle label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 55px;
+  height: 28px;
+  background-color: var(--box-bg);
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+  .theme-toggle label {
+    top: 0px;
+    right: 9%;
+  }
+}
+
+.theme-toggle label:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle .icon {
+  position: absolute;
+  top: 62%;
+  transform: translateY(-50%) rotate(0deg);;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.theme-toggle .icon.sun {
+  left: 3px;
+  opacity: 1;
+  color: #f59e0b;
+}
+
+.theme-toggle .icon.moon {
+  right: 24px;
+  opacity: 0;
+  color: #7074b9;
+}
+
+.theme-toggle input[type="checkbox"]:checked + label {
+  background-color: var(--box-bg);
+}
+
+.theme-toggle input[type="checkbox"]:checked + label .icon.sun {
+  opacity: 0;
+  transform: translateY(-50%) translateX(20px) rotateX(360deg);
+}
+
+.theme-toggle input[type="checkbox"]:checked + label .icon.moon {
+  opacity: 1;
+  transform: translateY(-50%) translateX(20px) rotateX(-360deg);
+}
