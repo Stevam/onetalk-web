@@ -1,5 +1,4 @@
-const API_BASE_URL = "https://onetalk-service.fly.dev";
-const API_BASE_URL_LOCAL = "http://localhost:8080";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const ENDPOINTS = {
   FRIENDS_LIST: `${API_BASE_URL}/friendship`,
