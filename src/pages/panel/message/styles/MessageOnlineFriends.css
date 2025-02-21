@@ -1,27 +1,26 @@
 .online-friends {
-    max-height: calc(50.5% - 50px);
+    max-height: calc(50.5% - 37px);
     overflow-y: auto;
     width: 250px;
     background-color: var(--box-bg);
-    padding: 15px;
+    padding: 0px 15px 15px 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     scrollbar-width: none;
     transition: background-color 0.4s ease;
+    border: 1px solid var(--border-color);
 }
 
 .-webkit-scrollbar {
     display: none;
 }
 
-
 .online-friends h2 {
     font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.online-friends h2 {
+    top:0;
+    margin-top: 0px;
+    padding-top: 0px;
     position: sticky;
     background: var(--box-bg);
     border-bottom: 1px solid #ccc;
@@ -52,10 +51,12 @@
         margin-bottom: 20px;
         padding: 0px;
         max-height: 100%;
-        border: 1px solid var(--border-color);
+        /* border: 1px solid var(--border-color); */
     }
-    h2 {
-        display: none;
+    .online-friends h2 {
+        /* display: none; */
+        font-size: 1rem;
+        text-align: center;
     }
 }
 
@@ -65,9 +66,11 @@
         margin-bottom: 20px;
         padding: 0px;
         max-height: 100%;
-        border: 1px solid var(--border-color);
+        /* border: 1px solid var(--border-color); */
     }
-    h2 {
-        display: none;
+    .online-friends h2 {
+        /* display: none; */
+        font-size: 1rem;
+        text-align: center;
     }    
 }

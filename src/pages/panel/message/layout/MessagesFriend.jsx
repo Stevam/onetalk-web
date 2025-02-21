@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { fakeApi } from "../../../../services/fakeapi.js";
 import "../styles/MessagesFriend.css";
 
@@ -9,6 +9,7 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
   const user = JSON.parse(localStorage.getItem('user'));
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const messagesContainerRef = useRef(null); // Referência para o contêiner de mensagens
 
   useEffect(() => {
     if (selectedConversation) {
@@ -19,6 +20,12 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
       setMessages([]);
     }
   }, [selectedConversation]);
+
+  useLayoutEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const sendMessage = () => {
     if (message.trim()) {
@@ -41,7 +48,6 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         setMessage("");
       });
-
     }
   };
 
@@ -54,7 +60,7 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
   return (
     <div className="messages-view">
       <h2>Conversation{" "}{selectedConversation?.friendName || selectedConversation?.participants?.map((p) => p.name).join(", ")}</h2>
-      <div className="message-history">
+      <div className="message-history" ref={messagesContainerRef}>
         {messages.map((msg, idx) => (
           //TODO: set add correct
           <div key={idx} className={`message ${msg.sender.id === 100 ? "sent" : "received"}`}>
@@ -67,7 +73,7 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
         ))}
       </div>
       <div className="message-input-container">
-        <textarea id={textAreaId} value={message} onKeyDown={handleKeyDown} onChange={(e) => setMessage(e.target.value)} placeholder="Type r message..." />
+        <textarea id={textAreaId} value={message} onKeyDown={handleKeyDown} onChange={(e) => setMessage(e.target.value)} placeholder="Type your message..." />
         <button id={sendButtonId} onClick={sendMessage}>Send</button>
       </div>
     </div>

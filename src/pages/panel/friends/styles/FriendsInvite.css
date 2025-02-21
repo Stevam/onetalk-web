@@ -54,7 +54,7 @@
 
     .friends-invite-layout input,
     .friends-invite-layout button {
-        width: 90%;
+        /* width: 90%; */
         max-width: none;
     }
 }

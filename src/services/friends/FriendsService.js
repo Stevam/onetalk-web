@@ -22,7 +22,11 @@ export const getFriendsList = async () => {
     const unauthorized = handleUnauthorized(response);
     if (unauthorized) return unauthorized;
 
-    if (!response.ok) throw new Error("Error fetching friends list");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error fetching friends list");
+    }
+
     return response.status !== 204 ? await response.json() : [];
   } catch (error) {
     console.error("Error fetching friends:", error);
@@ -47,7 +51,11 @@ export const removeFriend = async (email) => {
     const unauthorized = handleUnauthorized(response);
     if (unauthorized) return unauthorized;
 
-    if (!response.ok) throw new Error("Error removing friend");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error removing friend");
+    }
+
     return await response.json();
   } catch (error) {
     console.error("Error removing friend:", error);
@@ -72,7 +80,11 @@ export const inviteFriend = async (email) => {
     const unauthorized = handleUnauthorized(response);
     if (unauthorized) return unauthorized;
 
-    if (!response.ok) throw new Error("Error sending friend invite");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error sending friend invite");
+    }
+
     return await response.json();
   } catch (error) {
     console.error("Error sending friend invite:", error);
@@ -97,7 +109,11 @@ export const acceptRequest = async (email) => {
     const unauthorized = handleUnauthorized(response);
     if (unauthorized) return unauthorized;
 
-    if (!response.ok) throw new Error("Error accepting friend request");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error accepting friend request");
+    }
+
     return await response.json();
   } catch (error) {
     console.error("Error accepting friend request:", error);
@@ -122,7 +138,11 @@ export const declineRequest = async (email) => {
     const unauthorized = handleUnauthorized(response);
     if (unauthorized) return unauthorized;
 
-    if (!response.ok) throw new Error("Error declining friend request");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error declining friend request");
+    }
+
     return await response.json();
   } catch (error) {
     console.error("Error declining friend request:", error);
@@ -143,7 +163,11 @@ export const getInvites = async () => {
     const unauthorized = handleUnauthorized(response);
     if (unauthorized) return unauthorized;
 
-    if (!response.ok) throw new Error("Error fetching friend requests");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error fetching friend requests");
+    }
+
     return response.status !== 204 ? await response.json() : [];
   } catch (error) {
     console.error("Error fetching friend requests:", error);

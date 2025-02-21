@@ -14,7 +14,8 @@ export const signin = async (email, password) => {
   });
 
   if (!response.ok) {
-    throw new Error("Invalid credentials");
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Invalid credentials");
   }
 
   const data = await response.json();
@@ -40,7 +41,8 @@ export const signup = async (name, email, password) => {
   });
 
   if (!response.ok) {
-    throw new Error("Error signing up");
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Error signing up");
   }
   window.location.href = "/sign-in";
   // return await response.json();
