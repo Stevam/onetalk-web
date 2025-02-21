@@ -50,6 +50,9 @@
     .online-friends {
         width: 97%;
         margin-bottom: 20px;
+        padding: 0px;
+        max-height: 100%;
+        border: 1px solid var(--border-color);
     }
     h2 {
         display: none;
@@ -60,6 +63,9 @@
     .online-friends {
         width: 90%;
         margin-bottom: 20px;
+        padding: 0px;
+        max-height: 100%;
+        border: 1px solid var(--border-color);
     }
     h2 {
         display: none;

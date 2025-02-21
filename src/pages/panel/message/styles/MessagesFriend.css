@@ -98,7 +98,6 @@ textarea {
 @media (max-width: 768px) {
     .messages-view {
         width: 96%;
-        margin-top: 20px;
     }
 
     h2 {
@@ -109,7 +108,6 @@ textarea {
 @media (max-width: 480px) {
     .messages-view {
         width: 86%;
-        margin-top: 20px;
     }
 
     h2 {
