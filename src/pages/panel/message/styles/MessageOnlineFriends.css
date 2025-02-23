@@ -1,5 +1,6 @@
 .online-friends {
     max-height: calc(50.5% - 37px);
+    min-height: calc(50.5% - 37px);
     overflow-y: auto;
     width: 250px;
     background-color: var(--box-bg);
