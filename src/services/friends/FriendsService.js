@@ -56,7 +56,6 @@ export const removeFriend = async (email) => {
       throw new Error(errorData.message || "Error removing friend");
     }
 
-    return await response.json();
   } catch (error) {
     console.error("Error removing friend:", error);
     throw error;
@@ -85,7 +84,6 @@ export const inviteFriend = async (email) => {
       throw new Error(errorData.message || "Error sending friend invite");
     }
 
-    return await response.json();
   } catch (error) {
     console.error("Error sending friend invite:", error);
     throw error;
@@ -114,7 +112,6 @@ export const acceptRequest = async (email) => {
       throw new Error(errorData.message || "Error accepting friend request");
     }
 
-    return await response.json();
   } catch (error) {
     console.error("Error accepting friend request:", error);
     throw error;
@@ -143,7 +140,6 @@ export const declineRequest = async (email) => {
       throw new Error(errorData.message || "Error declining friend request");
     }
 
-    return await response.json();
   } catch (error) {
     console.error("Error declining friend request:", error);
     throw error;

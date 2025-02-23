@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { fakeApi } from "../../../../services/fakeapi.js";
+import { getMessagesByConversation } from "../../../../services/messages/message.js";
+import useWebSocket from "../../../../services/websocket/useWebSocket";
+import { ENDPOINTS } from "../../../../config/environment.js";
 import "../styles/MessagesFriend.css";
 
 const sendButtonId = `send-buttom-${Math.random().toString(36).substr(2, 9)}`;
@@ -7,33 +9,51 @@ const textAreaId = `text-area-${Math.random().toString(36).substr(2, 9)}`;
 
 function MessagesFriend({ selectedConversation, setSelectedConversation, updateConversations }) {
   const user = JSON.parse(localStorage.getItem('user'));
-  const [messages, setMessages] = useState([]);
+  const { messages: socketMessages, sendMessageToSocket, clearMessages, joinConversation } = useWebSocket(ENDPOINTS.WEBSOCKET_URL);
+  const [localMessages, setLocalMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const messagesContainerRef = useRef(null); // Referência para o contêiner de mensagens
+  const messagesContainerRef = useRef(null);
 
   useEffect(() => {
-    if (selectedConversation) {
-      fakeApi.getMessages(selectedConversation.id).then((messages) => {
-        setMessages(messages);
-      });
-    } else {
-      setMessages([]);
-    }
+    const fetchMessages = async () => {
+      if (!selectedConversation) {
+        clearMessages();
+        setLocalMessages([]);
+        return;
+      }
+
+      try {
+        const messagesByConversation = await getMessagesByConversation(selectedConversation.id);
+        clearMessages();
+        setLocalMessages(messagesByConversation); 
+        joinConversation(selectedConversation.id)
+      } catch (error) {
+        console.error("Failed to load messages:", error);
+      }
+    };
+
+    fetchMessages();
   }, [selectedConversation]);
+
+  const allMessages = [...localMessages];
+  socketMessages.forEach(socketMsg => {
+    if (!allMessages.some(localMsg => localMsg.id === socketMsg.id)) {
+      allMessages.push(socketMsg);
+    }
+  });
 
   useLayoutEffect(() => {
     if (messagesContainerRef.current) {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [allMessages]);
 
-  const sendMessage = () => {
+  const sendMessageHandler = () => {
     if (message.trim()) {
       const newMessage = {
         conversationId: selectedConversation.id,
         text: message,
-        //TODO: set add correct
-        sender: { name: user.name, id: 100 },
+        sender: { name: user.name, id: user.id },
       };
 
       const updatedConversation = {
@@ -43,17 +63,15 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
 
       updateConversations(updatedConversation);
       setSelectedConversation(updatedConversation);
-
-      fakeApi.pushMessages(newMessage).then(() => {
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
-        setMessage("");
-      });
+      sendMessageToSocket(newMessage);
+      setLocalMessages((prevMessages) => [...prevMessages, newMessage]);
+      setMessage("");
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.ctrlKey && e.key === 'Enter') {
-      sendMessage();
+      sendMessageHandler();
     }
   };
 
@@ -61,11 +79,8 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
     <div className="messages-view">
       <h2>Conversation{" "}{selectedConversation?.friendName || selectedConversation?.participants?.map((p) => p.name).join(", ")}</h2>
       <div className="message-history" ref={messagesContainerRef}>
-        {messages.map((msg, idx) => (
-          //TODO: set add correct
-          <div key={idx} className={`message ${msg.sender.id === 100 ? "sent" : "received"}`}>
-            <br />
-            {/* <strong>{msg.sender.name}:<br/></strong> {msg.text} */}
+        {allMessages.map((msg, idx) => (
+          <div key={idx} className={`message ${msg.sender.id === user.id ? "sent" : "received"}`}>
             <div className="bubble">
               {msg.text}
             </div>
@@ -74,7 +89,7 @@ function MessagesFriend({ selectedConversation, setSelectedConversation, updateC
       </div>
       <div className="message-input-container">
         <textarea id={textAreaId} value={message} onKeyDown={handleKeyDown} onChange={(e) => setMessage(e.target.value)} placeholder="Type your message..." />
-        <button id={sendButtonId} onClick={sendMessage}>Send</button>
+        <button id={sendButtonId} onClick={sendMessageHandler}>Send</button>
       </div>
     </div>
   );

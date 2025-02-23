@@ -13,6 +13,10 @@ export const signin = async (email, password) => {
     body: JSON.stringify({ email, password }),
   });
 
+  if (response.status == 404) {
+    throw new Error("User not exist!");
+  }
+
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || "Invalid credentials");
@@ -45,7 +49,6 @@ export const signup = async (name, email, password) => {
     throw new Error(errorData.message || "Error signing up");
   }
   window.location.href = "/sign-in";
-  // return await response.json();
 };
 
 export const logout = () => {

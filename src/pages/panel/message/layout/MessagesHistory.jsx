@@ -9,9 +9,9 @@ function MessagesHistory({ conversations, onSelectConversation }) {
       <ul>
         {conversations.map((conversation) => (
           !conversation.lastMessage ? "" :
-          <li key={conversation.id} onClick={() => onSelectConversation(conversation)}>
-            {conversation.participants.map((p) => p.name).join(", ")} - {conversation.lastMessage.text}
-          </li>
+            <li key={conversation.id} onClick={() => onSelectConversation(conversation)}>
+              {conversation.participants.map((p) => p.name).join(", ")} - {conversation.lastMessage.text}
+            </li>
         ))}
       </ul>
     </div>

@@ -1,3 +1,4 @@
+import { saveConversation, getUserConversations, getConversationByFriend } from "../../../../services/conversations/conversation.js";
 import React, { useState, useEffect } from "react";
 import MessagesFriend from "./MessagesFriend";
 import MessagesHistory from "./MessagesHistory";
@@ -5,36 +6,38 @@ import MessageOnlineFriends from "./MessageOnlineFriends";
 import Sidebar from "../../../../component/Sidebar";
 import Navbar from "../../../../component/Navbar";
 import Footer from "../../../../component/Footer";
-import { fakeApi } from "../../../../services/fakeapi.js";
 import "../styles/MessageLayout.css";
 
-function MessageLayout({ children }) {
+function MessageLayout() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [conversations, setConversations] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fakeApi.getConversations().then(setConversations);
-  }, []);
+    const fetchConversations = async () => {
+      try {
+        const conversations = await getUserConversations(user.id);
+        setConversations(conversations);
+      } catch (error) {
+        setError("Failed to load conversations: " + error.message);
+      }
+    };
+    fetchConversations();
+  }, [user.id]);
 
   const handleSelectFriend = async (friend) => {
-    const conversationOfUser = await fakeApi.getConversationByUser(friend.id);
-    if (!conversationOfUser) {
+    const conversationWithFriend = await getConversationByFriend(friend.id);
+    if (!conversationWithFriend) {
       const newconversation = {
-        //TODO: set add correct id
-        id: Date.now(),
-        //TODO: set add correct id
-        participants: [{ id: 100, name: user.name }, { id: friend.id, name: friend.name }],
-        createdAt: new Date()
+        participants: [{ id: user.id, name: user.name }, { id: friend.id, name: friend.name }]
       }
-
-      await fakeApi.pushConversations(newconversation).then(() => {
-        setSelectedConversation(newconversation);
-      });
+      const newconversationSaved = await saveConversation({ "id": user.id, "name": user.name }, { "id": friend.id, "name": friend.name });
+      setSelectedConversation(newconversationSaved);
 
     } else {
-      setSelectedConversation(conversationOfUser);
+      setSelectedConversation(conversationWithFriend);
     }
   };
 
@@ -63,6 +66,7 @@ function MessageLayout({ children }) {
           <MessagesFriend selectedConversation={selectedConversation}
             setSelectedConversation={setSelectedConversation} updateConversations={updateConversations} />
         </div>
+        {error && <p className="error-message">{error}</p>}
         <Footer />
       </div>
     </div>
