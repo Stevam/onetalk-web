@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { signup } from '../../../services/auth/authService';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { PuffLoader } from 'react-spinners';
 import "../styles/Signup.css";
 
 function Signup({ onSwitch }) {
@@ -8,21 +9,26 @@ function Signup({ onSwitch }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const emailId = `email-${Math.random().toString(36).substr(2, 9)}`;
   const nameId = `nameId-${Math.random().toString(36).substr(2, 9)}`;
   const passwordId = `password-${Math.random().toString(36).substr(2, 9)}`;
   const togglePassSignup = `toggle-pass-Signupignup-${Math.random().toString(36).substr(2, 9)}`;
   const signupBtnId = `signup-btn-${Math.random().toString(36).substr(2, 9)}`;
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
     try {
       await signup(name, email, password);
       window.location.href = '/sign-in';
     } catch (err) {
       setError('Signup failed: ' + err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -43,7 +49,9 @@ function Signup({ onSwitch }) {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
-          <button id={signupBtnId} type="submit">Sign Up</button>
+          <button id={signupBtnId} type="submit" disabled={loading}>
+            {loading ? <PuffLoader size={20} color={"#fff"} /> : 'Sign Up'}
+          </button>
           {error && <p className="error-message">{error}</p>}
         </form>
         <div className="signup-links">
