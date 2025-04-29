@@ -13,12 +13,15 @@ function FriendsLayout() {
   const [friends, setFriends] = useState([]);
   const [pendingRequest, setPendingRequest] = useState([]);
   const didFetch = useRef(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (didFetch.current) return;
     didFetch.current = true;
 
     const fetchData = async () => {
+      setLoading(true);
+      setError('');
       try {
         const [friendsData, pendingData] = await Promise.all([
           getFriendsList(),
@@ -28,6 +31,8 @@ function FriendsLayout() {
         setPendingRequest(pendingData);
       } catch (error) {
         setError("Failled to get a list of friend: " + error.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -40,8 +45,8 @@ function FriendsLayout() {
         <Navbar />
         <div className="friends-content">
           <FriendsInvite setPendingRequest={setPendingRequest} />
-          <FriendsListPending pendingRequest={pendingRequest} setPendingRequest={setPendingRequest} setFriends={setFriends} />
-          <FriendsList friends={friends} setFriends={setFriends} />
+          <FriendsListPending pendingRequest={pendingRequest} setPendingRequest={setPendingRequest} setFriends={setFriends} loading={loading} />
+          <FriendsList friends={friends} setFriends={setFriends} loading={loading} />
           {error && <p className="error-message">{error}</p>}
         </div>
         <Footer />
