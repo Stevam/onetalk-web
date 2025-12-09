@@ -58,7 +58,7 @@ function useWebSocket(url) {
     }
   }
 
-  return { messages, sendMessageToSocket, clearMessages, joinConversation };
+  return { socket: socketRef.current, messages, sendMessageToSocket, clearMessages, joinConversation };
 }
 
 export default useWebSocket;
